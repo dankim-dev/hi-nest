@@ -7,4 +7,4 @@ async function bootstrap() {
 }
 bootstrap();
 
-//command + click 통해서 AppModule 등으로 이동
+//command + click 통해서 AppModule 등으로 이동 가능
