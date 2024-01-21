@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Movie } from './entities/movie.entity';
 // database part but fake on this course
 @Injectable()
@@ -10,8 +10,12 @@ export class MoviesService {
         // real database에서는 query가 이곳에 옴
     }
 
-    getOne(id:string):Movie {
-        return this.movies.find(movie => movie.id === parseInt(id));
+    getOne(id:string): Movie {
+        const movie = this.movies.find(movie => movie.id === parseInt(id));
+        if(!movie) {
+            throw new NotFoundException(`Movie with ID ${id} not found.`);
+        }
+        return movie;
     }
 
     deleteOne(id:string):boolean {
